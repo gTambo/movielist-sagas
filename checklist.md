@@ -1,12 +1,13 @@
 ## Checklist
 
-- [ ] build in click functionality on each movie list item
-    - [ ] consider moving these into a separate child component
-- [ ] router and link to add movie page (or use history)
-- [ ] add movie page component with form (can be empty for now)
-- [ ] /details component, route and link
-    - [ ] get movie details with genres, store in redux (helllo, sagas) and display to dom.
+- [x] build in click functionality on each movie list item
+    - [x] consider moving these into a separate child component
+- [x] router and link to add movie page (or use history)
+- [x] add movie page component with form (can be empty for now)
+- [x] '/details' component, route and link
+- [ ] get movie details with genres, store in redux (helllo, sagas) and display to dom.
     - [ ] pass in req. params for movie Id
+    - [ ] genre router query for movie genre
     - [ ] useHistory with button to home page
 - [ ] fill out AddMovie with 2 inputs (title, poster), textarea (descrip), selector (genres) (MUI?)
     - [ ] cancel button (useHistory to '/')
