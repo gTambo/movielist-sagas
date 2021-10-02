@@ -10,7 +10,8 @@
     - [x] saga function for movies table details req
     - [x] saga function for genre table req
     - [x] reducer for selected movie in index
-    - [ ] genre router query for movie genre
+    - [x] movieRouter GET description query
+    - [ ] genre router GET genre query
 - [ ] useHistory with button to home page
 - [ ] fill out AddMovie with 2 inputs (title, poster), textarea (descrip), selector (genres) (MUI?)
     - [ ] cancel button (useHistory to '/')
