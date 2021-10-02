@@ -6,9 +6,11 @@
 - [x] add movie page component with form (can be empty for now)
 - [x] '/details' component, route and link
 - [ ] get movie details with genres, store in redux (helllo, sagas) and display to dom.
-    - [ ] pass in req. params for movie Id
+    - [x] dispatch to saga, pass in payload for movie Id
+    - [ ] saga function for movies table details req
+    - [ ] saga function for genre table req
     - [ ] genre router query for movie genre
-    - [ ] useHistory with button to home page
+- [ ] useHistory with button to home page
 - [ ] fill out AddMovie with 2 inputs (title, poster), textarea (descrip), selector (genres) (MUI?)
     - [ ] cancel button (useHistory to '/')
     - [ ] save button (POST to server)

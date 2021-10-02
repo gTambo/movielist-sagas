@@ -9,7 +9,8 @@ function MovieListItem ({ movie }) {
     
     const navToDetails = () => {
         // Dispatch object to reducer, passing in movie.id as payload
-        dispatch({ type: 'SELECT_MOVIE', payload: movie })
+        dispatch({ type: 'SELECT_MOVIE', payload: movie });
+        dispatch({ type: 'SELECT_MOVIE_GENRE', payload: movie });
         history.push("/details");
     }
     
