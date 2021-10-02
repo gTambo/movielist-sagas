@@ -7,8 +7,9 @@
 - [x] '/details' component, route and link
 - [ ] get movie details with genres, store in redux (helllo, sagas) and display to dom.
     - [x] dispatch to saga, pass in payload for movie Id
-    - [ ] saga function for movies table details req
-    - [ ] saga function for genre table req
+    - [x] saga function for movies table details req
+    - [x] saga function for genre table req
+    - [x] reducer for selected movie in index
     - [ ] genre router query for movie genre
 - [ ] useHistory with button to home page
 - [ ] fill out AddMovie with 2 inputs (title, poster), textarea (descrip), selector (genres) (MUI?)

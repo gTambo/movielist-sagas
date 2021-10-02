@@ -14,7 +14,7 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
-    yield takeEvery('SELECT_MOVIE', selectMovie);
+    yield takeEvery('SELECT_MOVIE_DESCRIPTION', selectMovieDescription);
     yield takeEvery('SELECT_MOVIE_GENRE', selectMovieGenre)
 }
 
@@ -37,20 +37,20 @@ function* selectMovieGenre (action) {
         const movie = action.payload;
         const movieGenre = yield axios.get(`/api/genre/${movie.id}`)
         // send to reducer
-        yield put({ type: 'SELECTED_MOVIE_GENRE', payload: movieGenre })
+        yield put({ type: 'SET_MOVIE_GENRE', payload: movieGenre.data })
     } catch (err) {
         console.log('error in fetching genre ', err);
     }
 }
 
-function* selectMovie (action) {
+function* selectMovieDescription (action) {
     // specific movie details from db, given ID
     try {
         console.log('Fetching movie description', movie.title);
         const movie = action.payload;
         const movieDetails = yield axios.get(`/api/movie/${movie.id}`)
         // send to reducer
-        yield put({ type: 'SELECTED_MOVIE_DESCRIPTION', payload: movieDetails })
+        yield put({ type: 'SET_MOVIE_DESCRIPTION', payload: movieDetails.data })
     } catch (err) {
         console.log('Error fetching description', err);
     }
@@ -80,7 +80,16 @@ const genres = (state = [], action) => {
     }
 }
 
-// const 
+const selectedMovie = (state = {}, action) => {
+    switch(action.type) {
+        case 'SET_MOVIE_GENRE':
+            return {...state, genre: action.payload};
+        case 'SET_MOVIE_DESCRIPTION':
+            return {...state, description: action.payload};
+        default:
+            return state;
+    }
+}
 
 // Create one store that all components can use
 const storeInstance = createStore(
