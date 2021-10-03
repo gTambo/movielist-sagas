@@ -18,13 +18,13 @@ router.get('/', (req, res) => {
 
 router.get('/details/:id', (req, res) => {
   console.log("In GET details: ", req.params.id);
-  const queryText = `SELECT ("description") FROM movies WHERE id=$1;`;
+  const queryText = `SELECT "title", "description" FROM movies WHERE id=$1;`;
   pool.query(queryText, [req.params.id])
   .then((result) => {
     console.log("sending back: ", result.rows[0]);
     res.send(result.rows[0]); })
   .catch( (error) => {
-    console.log('Error in movies router GET', error);
+    console.log('Error in movie router GET details', error);
     res.sendStatus(500);
   });
 });

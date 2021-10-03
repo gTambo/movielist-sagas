@@ -80,12 +80,24 @@ const genres = (state = [], action) => {
     }
 }
 
-const selectedMovie = (state = {}, action) => {
+const selectedMovieDescription = (state = {}, action) => {
+    switch(action.type) {
+        // case 'SET_MOVIE_GENRE':
+        //     return {...state, genre: action.payload};
+        case 'SET_MOVIE_DESCRIPTION':
+            return {...state, 
+                title: action.payload.title,
+                description: action.payload.description    
+            };
+        default:
+            return state;
+    }
+}
+
+const selectedMovieGenres = (state = [], action) => {
     switch(action.type) {
         case 'SET_MOVIE_GENRE':
-            return {...state, genre: action.payload};
-        case 'SET_MOVIE_DESCRIPTION':
-            return {...state, description: action.payload.description};
+            return action.payload;
         default:
             return state;
     }
@@ -96,7 +108,8 @@ const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
-        selectedMovie,
+        selectedMovieDescription,
+        selectedMovieGenres,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

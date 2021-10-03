@@ -10,18 +10,17 @@ router.get('/', (req, res) => {
 router.get('/details/:id', (req, res) => {
   console.log("In GET details: ", req.params.id);
   const queryText = 
-      `SELECT "g"."name" FROM "movies" as "m"
-      JOIN "movies_genres" as "mg" ON "m"."id" = "mg"."movie_id"
-      RIGHT JOIN "genres" as "g" ON "mg"."genre_id" = "g"."id"
+      `SELECT "g"."name", "genre_id" FROM "movies_genres" as "mg"
+      JOIN "genres" as "g" ON "mg"."genre_id" = "g"."id"
       WHERE "movie_id"=$1 -- expect 3 results
-      GROUP BY "g"."name";
+      GROUP BY "g"."name", "genre_id";
   `;
   pool.query(queryText, [req.params.id])
   .then((result) => {
     console.log("sending back: ", result.rows);
     res.send(result.rows); })
   .catch( (error) => {
-    console.log('Error in movies router GET', error);
+    console.log('Error in genre router GET', error);
     res.sendStatus(500);
   });
 });

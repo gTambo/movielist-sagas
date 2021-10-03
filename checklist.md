@@ -13,7 +13,7 @@
     - [x] movieRouter GET description query
     - [x] genre router GET genre query
     - [ ] render to dom
-- [ ] useHistory with button to home page
+- [x] useHistory with button to home page
 - [ ] fill out AddMovie with 2 inputs (title, poster), textarea (descrip), selector (genres) (MUI?)
     - [ ] cancel button (useHistory to '/')
     - [ ] save button (POST to server)
