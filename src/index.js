@@ -15,7 +15,12 @@ import axios from 'axios';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('SELECT_MOVIE_DESCRIPTION', selectMovieDescription);
-    yield takeEvery('SELECT_MOVIE_GENRE', selectMovieGenre)
+    yield takeEvery('SELECT_MOVIE_GENRE', selectMovieGenre);
+    yield takeEvery('FETCH_GENRES', fetchAllGenres);
+}
+
+function* fetchAllGenres() {
+    
 }
 
 function* fetchAllMovies() {

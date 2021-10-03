@@ -5,17 +5,17 @@
 - [x] router and link to add movie page (or use history)
 - [x] add movie page component with form (can be empty for now)
 - [x] '/details' component, route and link
-- [ ] get movie details with genres, store in redux (helllo, sagas) and display to dom.
+- [x] get movie details with genres, store in redux (helllo, sagas) and display to dom.
     - [x] dispatch to saga, pass in payload for movie Id
     - [x] saga function for movies table details req
     - [x] saga function for genre table req
     - [x] reducer for selected movie in index
     - [x] movieRouter GET description query
     - [x] genre router GET genre query
-    - [ ] render to dom
+    - [x] render to dom
 - [x] useHistory with button to home page
 - [ ] fill out AddMovie with 2 inputs (title, poster), textarea (descrip), selector (genres) (MUI?)
-    - [ ] cancel button (useHistory to '/')
+    - [x] cancel button (useHistory to '/')
     - [ ] save button (POST to server)
 - [ ] implement MUI cards for posters
 - [ ] mui grids
