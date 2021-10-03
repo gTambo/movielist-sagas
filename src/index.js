@@ -20,7 +20,9 @@ function* rootSaga() {
 }
 
 function* fetchAllGenres() {
-    const 
+    const genres = yield axios.get('api/genre');
+    console.log('In fetchAllGenres', genres.data);
+    yield put({ type: 'SET_GENRES', payload: genres.data });
 }
 
 function* fetchAllMovies() {

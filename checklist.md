@@ -14,9 +14,17 @@
     - [x] genre router GET genre query
     - [x] render to dom
 - [x] useHistory with button to home page
-- [ ] fill out AddMovie with 2 inputs (title, poster), textarea (descrip), selector (genres) (MUI?)
+- [ ] fill out AddMovie selector (MUI?)
     - [x] cancel button (useHistory to '/')
-    - [ ] save button (POST to server)
+    - [x] save button (POST to server)
+    - [x] 2 inputs (title, poster),
+    - [ ] textarea (descrip),
+    - [ ] get genres into dropdown
+        - [x] saga get genres
+        - [ ] build out genre router with DB query
+        - [ ] map results into select element
+    - [ ] build in functionality onSelect for dropdown
+    - [ ] handle Save function
 - [ ] implement MUI cards for posters
 - [ ] mui grids
 - [ ] __**many code comments**__
