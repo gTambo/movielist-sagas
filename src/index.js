@@ -20,7 +20,7 @@ function* rootSaga() {
 }
 
 function* fetchAllGenres() {
-    
+    const 
 }
 
 function* fetchAllMovies() {
