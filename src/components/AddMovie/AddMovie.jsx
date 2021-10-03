@@ -45,10 +45,15 @@ function AddMovie () {
                     rows="5" cols="33">
             It was a dark and stormy night...
             </textarea>
-            {JSON.stringify(genres)}
+            {/* {JSON.stringify(genres)} */}
             <select className="select-genre">
             {/* TO DO: GET genres from database, map over into selector */}
-
+                <option>-select a genre-</option>
+                {genres.map(genre => {
+                    return(
+                        <option key={genre.id} value={genre.name}>{genre.name}</option>
+                    )
+                })}
             </select>
             <button type="submit">Save Movie</button>
         </form>

@@ -23,7 +23,7 @@
     - [ ] get genres into dropdown
         - [x] saga get genres
         - [x] build out genre router with DB query
-        - [ ] map results into select element
+        - [x] map results into select element
     - [ ] build in functionality onSelect for dropdown
     - [ ] handle Save function
 - [ ] implement MUI cards for posters
