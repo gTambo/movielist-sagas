@@ -19,6 +19,11 @@ function AddMovie () {
         dispatch({ type: 'FETCH_GENRES' });
     }, []);
 
+    const handleSubmit = () => {
+        console.log('in submit');
+        // TO DO: send all form data to database
+        // push to home page
+    }
 
     return( 
         <div>
@@ -40,14 +45,14 @@ function AddMovie () {
                     rows="5" cols="33">
             It was a dark and stormy night...
             </textarea>
- 
+            {JSON.stringify(genres)}
             <select className="select-genre">
             {/* TO DO: GET genres from database, map over into selector */}
 
             </select>
             <button type="submit">Save Movie</button>
         </form>
-        <button onClick={ history.push('/')}>Back to Movies</button>
+        <button onClick={ () => history.push('/')}>Back to Movies</button>
         </div>
     )
 }

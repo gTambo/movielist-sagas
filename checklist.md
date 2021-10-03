@@ -17,11 +17,12 @@
 - [ ] fill out AddMovie selector (MUI?)
     - [x] cancel button (useHistory to '/')
     - [x] save button (POST to server)
+    - [x] navigate to add movie from home page
     - [x] 2 inputs (title, poster),
     - [ ] textarea (descrip),
     - [ ] get genres into dropdown
         - [x] saga get genres
-        - [ ] build out genre router with DB query
+        - [x] build out genre router with DB query
         - [ ] map results into select element
     - [ ] build in functionality onSelect for dropdown
     - [ ] handle Save function
