@@ -110,6 +110,35 @@ const selectedMovieGenres = (state = [], action) => {
     }
 }
 
+const newMovie = (state = {}, action) => {
+    let genreArray = [];
+    console.log('in new movie: ', action.payload);
+    switch(action.type){
+    // TODO: WRITE ACTION CATCHES
+        // case 'NEW_MOVIE_GENRE':
+        //     genreArray.push(action.payload)
+        //     return {...state, genre: genreArray}
+        case 'NEW_MOVIE_TITLE':
+            return {...state, title: action.payload}
+        case 'NEW_MOVIE_POSTER':
+            return {...state, title: action.payload}
+        case 'NEW_MOVIE_DESCRIPTION':
+            return {...state, description: action.payload}  
+        default:
+            return state;
+    }
+}
+
+const newMovieGenre = (state = [], action) => {
+    switch(action.type) {
+        // TODO: WRITE ACTION CATCHES
+        case 'NEW_MOVIE_GENRE':
+            return [...state, action.payload];
+        default:
+            return state;
+    }
+}
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
@@ -117,6 +146,8 @@ const storeInstance = createStore(
         genres,
         selectedMovieDescription,
         selectedMovieGenres,
+        newMovie,
+        newMovieGenre,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

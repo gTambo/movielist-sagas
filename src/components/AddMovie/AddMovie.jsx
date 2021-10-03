@@ -5,13 +5,15 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import Select from '@material-ui/core/Select';
 
 function AddMovie () {
     const [newMovieTitle, setNewMovieTitle] = useState('');
     const [newMoviePoster, setNewMoviePoster] = useState('');
+    const [selectedGenre, setSelectedGenre] = useState('')
     const dispatch = useDispatch();
     const storeInstance = useSelector(store => store); 
-    const { genres } = storeInstance;
+    const { genres, newMovie, newMovieGenre } = storeInstance;
     const history = useHistory();
     
     //  get genres on page load 
@@ -25,39 +27,56 @@ function AddMovie () {
         // push to home page
     }
 
+    const handleGenreSelect= () => {
+        console.log('In handle select: ', selectedGenre);
+        dispatch({ type: 'NEW_MOVIE_GENRE', payload: selectedGenre });
+    }
+
     return( 
         <div>
         <h2>Lets include a form to add a movie!</h2>
         <form onSubmit={handleSubmit}>
-            <input required 
+            Title: <input
                    type="text" 
+                   placeholder="title"
                    value={newMovieTitle}
-                   onChange={ (event) => setNewMovieTitle(event.target.value)}
+                   onChange={ (evt) => setNewMovieTitle(evt.target.value)}
             />
-            <input required 
+            Poster: <input 
                    type="text" 
+                   placeholder="poster url"
                    value={newMoviePoster}
                    onChange={ (event) => setNewMoviePoster(event.target.value)}
             />
-            <label for="story">Tell us your story:</label>
+            <label htmlFor="story">Tell us your story:</label>
             {/* TO DO: change this generic text area */}
-            <textarea id="story" name="story"
-                    rows="5" cols="33">
-            It was a dark and stormy night...
+            <textarea className="story"
+                    rows="5" cols="33"
+                    defaultValue="It was a dark and stormy night..."
+                    >
+                    
             </textarea>
             {/* {JSON.stringify(genres)} */}
-            <select className="select-genre">
+            <select className="select-genre" onChange={(event) => setSelectedGenre(event.target.value)}>
             {/* TO DO: GET genres from database, map over into selector */}
-                <option>-select a genre-</option>
+                <option >-select a genre-</option>
                 {genres.map(genre => {
                     return(
-                        <option key={genre.id} value={genre.name}>{genre.name}</option>
+                        <option key={genre.id} 
+                                // data={genre}
+                                 >
+                            {genre.name}
+                        </option>
                     )
                 })}
             </select>
-            <button type="submit">Save Movie</button>
+            <button onClick={() => handleGenreSelect()} >Add Genre</button>
+            <input type="submit" value="Save Movie"/>
         </form>
         <button onClick={ () => history.push('/')}>Back to Movies</button>
+        <ul>
+            Genres: {newMovieGenre.map((genre, i)=>(<li key={i}>{genre}</li>))}
+        </ul>
         </div>
     )
 }
