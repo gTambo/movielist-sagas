@@ -100,6 +100,7 @@ const selectedMovieDescription = (state = {}, action) => {
         case 'SET_MOVIE_DESCRIPTION':
             return {...state, 
                 title: action.payload.title,
+                poster: action.payload.poster,
                 description: action.payload.description    
             };
         default:

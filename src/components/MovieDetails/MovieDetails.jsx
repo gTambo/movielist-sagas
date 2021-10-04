@@ -19,10 +19,11 @@ function MovieDetails () {
     return (
         <div>
             <p>Details here</p>
-            {JSON.stringify(selectedMovieGenres)}
+            {/* {JSON.stringify(selectedMovieGenres)} */}
             <p>{selectedMovieDescription.title}</p>
+            <img src={selectedMovieDescription.poster} alt="MoviePoster" />
             <p>{selectedMovieDescription.description}</p> 
-            <ul>{selectedMovieGenres.map((genre) => (<li key={genre.genre_id}>{genre.name}</li>))}</ul>
+            <ul>Genre: {selectedMovieGenres.map((genre) => (<li key={genre.genre_id}>{genre.name}</li>))}</ul>
             <button onClick={ () => history.push("/") }>Back To Movies</button>
         </div>
     )

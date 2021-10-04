@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 
 router.get('/details/:id', (req, res) => {
   console.log("In GET details: ", req.params.id);
-  const queryText = `SELECT "title", "description" FROM movies WHERE id=$1;`;
+  const queryText = `SELECT "title", "poster", "description" FROM movies WHERE id=$1;`;
   pool.query(queryText, [req.params.id])
   .then((result) => {
     console.log("sending back: ", result.rows[0]);
