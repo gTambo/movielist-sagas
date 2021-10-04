@@ -22,17 +22,21 @@ function* rootSaga() {
 
 function* addNewMovie (action) {
     try {console.log('Adding new movie: ', action.payload);
-        const newMovie = yield axios.post('api/movie', action.payload);
-        // yield put({ type: 'SET_MOVIES' }); // do we need this here since we are navigating to a page that calls this every time we dispatch?
+        yield axios.post('api/movie', action.payload);
+        yield put({ type: 'FETCH_MOVIES' }); // do we need this here since we are navigating to a page that calls this every time we dispatch?
     } catch (err) {
         console.log('Error adding movie', err);
     }
 }
 
 function* fetchAllGenres() {
-    const genres = yield axios.get('api/genre');
-    console.log('In fetchAllGenres', genres.data);
-    yield put({ type: 'SET_GENRES', payload: genres.data });
+    try {
+        const genres = yield axios.get('api/genre');
+        console.log('In fetchAllGenres', genres.data);
+        yield put({ type: 'SET_GENRES', payload: genres.data });
+    } catch (err) {
+        console.log('ERROR in saga get genres', err);
+    }
 }
 
 function* fetchAllMovies() {
