@@ -21,9 +21,12 @@ function* rootSaga() {
 }
 
 function* addNewMovie (action) {
-    console.log('Adding new movie: ', action.payload);
-    const newMovie = yield axios.post('api/movie', action.payload);
-    yield put({ type: 'SET_MOVIES' });
+    try {console.log('Adding new movie: ', action.payload);
+        const newMovie = yield axios.post('api/movie', action.payload);
+        // yield put({ type: 'SET_MOVIES' }); // do we need this here since we are navigating to a page that calls this every time we dispatch?
+    } catch (err) {
+        console.log('Error adding movie', err);
+    }
 }
 
 function* fetchAllGenres() {
@@ -41,8 +44,7 @@ function* fetchAllMovies() {
 
     } catch {
         console.log('get all error');
-    }
-        
+    }    
 }
 
 function* selectMovieGenre (action) {
@@ -78,7 +80,6 @@ const movies = (state = [], action) => {
     switch (action.type) {
         case 'SET_MOVIES':
             return action.payload;
-        
         default:
             return state;
     }
@@ -96,8 +97,6 @@ const genres = (state = [], action) => {
 
 const selectedMovieDescription = (state = {}, action) => {
     switch(action.type) {
-        // case 'SET_MOVIE_GENRE':
-        //     return {...state, genre: action.payload};
         case 'SET_MOVIE_DESCRIPTION':
             return {...state, 
                 title: action.payload.title,
@@ -116,26 +115,6 @@ const selectedMovieGenres = (state = [], action) => {
             return state;
     }
 }
-
-// const newMovie = (state = {}, action) => {
-//     let genreArray = [];
-//     console.log('in new movie: ', action.payload);
-//     switch(action.type){
-//     // Do I even need this reducer anymore?
-//         case 'NEW_MOVIE_GENRE':
-//             genreArray.push(action.payload)
-//             return {...state, genre: genreArray}
-//         case 'NEW_MOVIE_TITLE':
-//             return {...state, title: action.payload}
-//         case 'NEW_MOVIE_POSTER':
-//             return {...state, title: action.payload}
-//         case 'NEW_MOVIE_DESCRIPTION':
-//             return {...state, description: action.payload}  
-//         default:
-//             return state;
-//     }
-// }
-
 
 // Create one store that all components can use
 const storeInstance = createStore(
