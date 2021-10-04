@@ -17,6 +17,13 @@ function* rootSaga() {
     yield takeEvery('SELECT_MOVIE_DESCRIPTION', selectMovieDescription);
     yield takeEvery('SELECT_MOVIE_GENRE', selectMovieGenre);
     yield takeEvery('FETCH_GENRES', fetchAllGenres);
+    yield takeEvery('ADD_MOVIE', addNewMovie);
+}
+
+function* addNewMovie (action) {
+    console.log('Adding new movie: ', action.payload);
+    const newMovie = yield axios.post('api/movie', action.payload);
+    yield put({ type: 'SET_MOVIES' });
 }
 
 function* fetchAllGenres() {
@@ -110,34 +117,25 @@ const selectedMovieGenres = (state = [], action) => {
     }
 }
 
-const newMovie = (state = {}, action) => {
-    let genreArray = [];
-    console.log('in new movie: ', action.payload);
-    switch(action.type){
-    // TODO: WRITE ACTION CATCHES
-        // case 'NEW_MOVIE_GENRE':
-        //     genreArray.push(action.payload)
-        //     return {...state, genre: genreArray}
-        case 'NEW_MOVIE_TITLE':
-            return {...state, title: action.payload}
-        case 'NEW_MOVIE_POSTER':
-            return {...state, title: action.payload}
-        case 'NEW_MOVIE_DESCRIPTION':
-            return {...state, description: action.payload}  
-        default:
-            return state;
-    }
-}
+// const newMovie = (state = {}, action) => {
+//     let genreArray = [];
+//     console.log('in new movie: ', action.payload);
+//     switch(action.type){
+//     // Do I even need this reducer anymore?
+//         case 'NEW_MOVIE_GENRE':
+//             genreArray.push(action.payload)
+//             return {...state, genre: genreArray}
+//         case 'NEW_MOVIE_TITLE':
+//             return {...state, title: action.payload}
+//         case 'NEW_MOVIE_POSTER':
+//             return {...state, title: action.payload}
+//         case 'NEW_MOVIE_DESCRIPTION':
+//             return {...state, description: action.payload}  
+//         default:
+//             return state;
+//     }
+// }
 
-const newMovieGenre = (state = [], action) => {
-    switch(action.type) {
-        // TODO: WRITE ACTION CATCHES
-        case 'NEW_MOVIE_GENRE':
-            return [...state, action.payload];
-        default:
-            return state;
-    }
-}
 
 // Create one store that all components can use
 const storeInstance = createStore(
@@ -146,8 +144,7 @@ const storeInstance = createStore(
         genres,
         selectedMovieDescription,
         selectedMovieGenres,
-        newMovie,
-        newMovieGenre,
+        // newMovie,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

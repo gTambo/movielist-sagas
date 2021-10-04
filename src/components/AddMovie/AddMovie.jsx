@@ -9,88 +9,83 @@ import Select from '@material-ui/core/Select';
 
 function AddMovie () {
     //  TO DO: use movieToAdd object as default state, and modify with useState
-    const [newMovieTitle, setNewMovieTitle] = useState('');
-    const [newMoviePoster, setNewMoviePoster] = useState('');
-    const [newDescription, setNewDescription] = useState('');
-    const [selectedGenre, setSelectedGenre] = useState('');
+    const defaultMovie = {
+        genre_id: '',
+        title: '',
+        poster: '',
+        description: ''
+    }
+    // Set state form new movie details
+    const [movieToAdd, setMovieToAdd] = useState(defaultMovie)
+    // to send data to redux
     const dispatch = useDispatch();
+    // all genres were fetched into redux store on page load 
+    // in useEffect() get them from reducer 'genres'
     const storeInstance = useSelector(store => store); 
-    const { genres, newMovie, newMovieGenre } = storeInstance;
+    const { genres } = storeInstance;
+    // for navigating to another page
     const history = useHistory();
-    // TO DO: try pushing genres to this array on select
-    // const addMovieGenres = [];
+
     //  get genres on page load 
     useEffect( () => {
         dispatch({ type: 'FETCH_GENRES' });
     }, []);
 
-    let movieToAdd = {
-        genres: newMovieGenre,
-        title: newMovieTitle,
-        poster: newMoviePoster,
-        description: newDescription
-    }
+    // on form submit
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log('in submit', movieToAdd);
         // TO DO: send all form data to database
-        dispatch({type: 'ADD_MOVIE', payload: movieToAdd})
+        dispatch({type: 'ADD_MOVIE', payload: movieToAdd});
+        setMovieToAdd(defaultMovie);
         // push to home page
-    }
-
-    const handleGenreSelect= () => {
-        console.log('In handle select: ', selectedGenre);
-        dispatch({ type: 'NEW_MOVIE_GENRE', payload: selectedGenre });
+        history.push("/");
     }
 
     return( 
         <div>
         <h2>Lets include a form to add a movie!</h2>
         <form onSubmit={handleSubmit}>
-            Title: <input
-                   type="text" 
-                   placeholder="title"
-                   value={newMovieTitle}
-                   onChange={ (evt) => setNewMovieTitle(evt.target.value)}
+            Title: <input required
+                    type="text" 
+                    placeholder="title"
+                    value={movieToAdd.title}
+                    onChange={ (evt) => setMovieToAdd({...movieToAdd, title: evt.target.value})}
             />
             Poster: <input 
-                   type="text" 
-                   placeholder="poster url"
-                   value={newMoviePoster}
-                   onChange={ (event) => setNewMoviePoster(event.target.value)}
+                    type="text" 
+                    placeholder="poster url"
+                    value={movieToAdd.poster}
+                    onChange={ (evt) => setMovieToAdd({...movieToAdd, poster: evt.target.value})}
             />
             <label htmlFor="story">Synopsis:</label>
-            {/* TO DO: change this generic text area */}
             <textarea className="story"
                     rows="5" cols="33"
                     placeholder="Movie description here"
-                    value={newDescription}
-                    onChange={(event) => setNewDescription(event.target.value)}
+                    value={movieToAdd.description}
+                    onChange={ (evt) => setMovieToAdd({...movieToAdd, description: evt.target.value})}
                     >
                     
             </textarea>
-            {/* {JSON.stringify(genres)} */}
-            
-            <input type="submit" value="Save Movie"/>
-        </form>
-        <select className="select-genre" onChange={(event) => setSelectedGenre(event.target.value)}>
-            {/* TO DO: GET genres from database, map over into selector */}
-                <option >-select a genre-</option>
+            <select className="select-genre" 
+                onChange={ (evt) => setMovieToAdd({...movieToAdd, genre_id: evt.target.value})}
+                >
+                {/* GET genres from database, map over results into selector */}
+                <option>-select a genre-</option>
                 {genres.map(genre => {
                     return(
                         <option key={genre.id} 
-                                // value={genre}
-                                 >
+                                value={genre.id}>
                             {genre.name}
                         </option>
                     )
                 })}
             </select>
-            <button onClick={() => handleGenreSelect()} >Add Genre</button>
+            <input type="submit" value="Save Movie"/>
+        </form>
+        
+            {/* <button onClick={() => handleGenreSelect()} >Add Genre</button> */}
             <button onClick={ () => history.push('/')}>Back to Movies</button>
-        <ul>
-            Genres: {newMovieGenre.map((genre, i)=>(<li key={i}>{genre}</li>))}
-        </ul>
         </div>
     )
 }
