@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Select from '@material-ui/core/Select';
 
 function AddMovie () {
+    //  TO DO: use movieToAdd object as default state, and modify with useState
     const [newMovieTitle, setNewMovieTitle] = useState('');
     const [newMoviePoster, setNewMoviePoster] = useState('');
     const [newDescription, setNewDescription] = useState('');
@@ -16,7 +17,8 @@ function AddMovie () {
     const storeInstance = useSelector(store => store); 
     const { genres, newMovie, newMovieGenre } = storeInstance;
     const history = useHistory();
-    
+    // TO DO: try pushing genres to this array on select
+    // const addMovieGenres = [];
     //  get genres on page load 
     useEffect( () => {
         dispatch({ type: 'FETCH_GENRES' });
