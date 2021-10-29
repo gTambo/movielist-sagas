@@ -5,7 +5,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Select from '@material-ui/core/Select';
 
 function AddMovie () {
     //  TO DO: use movieToAdd object as default state, and modify with useState
@@ -44,9 +43,11 @@ function AddMovie () {
 
     return( 
         <div>
-        <h2>Lets include a form to add a movie!</h2>
-        <form onSubmit={handleSubmit}>
-            Title: <input required
+        <h2>Add a new movie here</h2>
+        <form style={{ 'marginleft': '5', display: 'flex', justifyContent: 'center', alignItems: 'center'}} onSubmit={handleSubmit}>
+            <label htmlFor="title">Title:</label>
+            <input required
+                    id="title"
                     type="text" 
                     placeholder="title"
                     value={movieToAdd.title}
@@ -85,7 +86,7 @@ function AddMovie () {
         </form>
         
             {/* <button onClick={() => handleGenreSelect()} >Add Genre</button> */}
-            <button onClick={ () => history.push('/')}>Back to Movies</button>
+            <button className="btn" onClick={ () => history.push('/')}>Cancel</button>
         </div>
     )
 }

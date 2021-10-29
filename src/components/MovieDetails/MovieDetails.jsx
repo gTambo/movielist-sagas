@@ -4,6 +4,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import './MovieDetails.css'
 
 function MovieDetails () {
     const storeInstance = useSelector(store => store);
@@ -18,13 +19,12 @@ function MovieDetails () {
     
     return (
         <div>
-            <p>Details here</p>
             {/* {JSON.stringify(selectedMovieGenres)} */}
-            <p>{selectedMovieDescription.title}</p>
+            <h3>{selectedMovieDescription.title}</h3>
             <img src={selectedMovieDescription.poster} alt="MoviePoster" />
             <p>{selectedMovieDescription.description}</p> 
             <ul>Genre: {selectedMovieGenres.map((genre) => (<li key={genre.genre_id}>{genre.name}</li>))}</ul>
-            <button onClick={ () => history.push("/") }>Back To Movies</button>
+            <button className="btn" onClick={ () => history.push("/") }>Back To Movies</button>
         </div>
     )
 }

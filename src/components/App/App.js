@@ -22,7 +22,7 @@ function App() {
           <AddMovie />
         </Route>
       </Router>
-      <h2>This is a Footer!</h2>
+      <h5 id="footer" style={{'vertical': 'bottom'}} >This is a Footer! At the bottom of the page!</h5>
     </div>
   );
 }
