@@ -20,7 +20,7 @@
 }
 
 #footer{
-  position:absolute;
+  position:static;
   left:0;
   bottom:0;
   right:0;
@@ -33,4 +33,15 @@
 
 .btn {
   margin-top: 3em;
+}
+
+img {
+  height: 300px;
+  max-width: 300px;
+}
+
+.movie-item {
+  display: flex;
+  margin: 85px;
+  padding: 8px;
 }

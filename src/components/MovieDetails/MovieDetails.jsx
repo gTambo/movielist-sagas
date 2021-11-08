@@ -21,7 +21,7 @@ function MovieDetails () {
         <div>
             {/* {JSON.stringify(selectedMovieGenres)} */}
             <h3>{selectedMovieDescription.title}</h3>
-            <img src={selectedMovieDescription.poster} alt="MoviePoster" />
+            <img className="detail-poster" src={selectedMovieDescription.poster} alt="MoviePoster" />
             <p>{selectedMovieDescription.description}</p> 
             <ul>Genre: {selectedMovieGenres.map((genre) => (<li key={genre.genre_id}>{genre.name}</li>))}</ul>
             <button className="btn" onClick={ () => history.push("/") }>Back To Movies</button>

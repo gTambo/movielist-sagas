@@ -16,7 +16,7 @@ function MovieListItem ({ movie }) {
     
     return(
         <>
-            <div onClick={ navToDetails }>
+            <div classname="movie-item" onClick={ navToDetails }>
                 {/* TO DO: Remove link below after navToDetails complete */}
                 <h3>{movie.title}</h3>
                 {/* <span className="note">click for details</span> */}
